@@ -15,11 +15,11 @@ import java.util.List;
 public class ServiceController {
     @Autowired
     private ServiceService serviceService;
-    @PostMapping
-    public ResponseEntity<Servicee> creaSteService(@RequestBody ServiceRecordDto serviceDto) {
+    @PostMapping("/")
+    public ResponseEntity<Servicee> createService(@RequestBody ServiceRecordDto serviceDto) {
         return serviceService.save(serviceDto);
     }
-    @GetMapping
+    @GetMapping("/")
     public ResponseEntity<List<Servicee>> getAllServices(){
         return serviceService.getAllService();
     }

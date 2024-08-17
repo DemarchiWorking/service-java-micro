@@ -3,6 +3,7 @@ package com.example.servico.model;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 
+import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -13,9 +14,10 @@ public class Project {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
-    private Double budget;
+    private BigDecimal budget;
     private String category;
     private String description;
+
     public Long getId() {
         return id;
     }
@@ -32,11 +34,11 @@ public class Project {
         this.name = name;
     }
 
-    public Double getBudget() {
+    public BigDecimal getBudget() {
         return budget;
     }
 
-    public void setBudget(Double budget) {
+    public void setBudget(BigDecimal budget) {
         this.budget = budget;
     }
 
@@ -55,6 +57,5 @@ public class Project {
     public void setDescription(String description) {
         this.description = description;
     }
-
 }
 

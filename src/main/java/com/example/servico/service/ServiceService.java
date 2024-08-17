@@ -4,6 +4,8 @@ import com.example.servico.dtos.ServiceRecordDto;
 import com.example.servico.model.Project;
 import com.example.servico.model.Servicee;
 import com.example.servico.repository.ServiceRepository;
+import com.example.servico.service.feign.ServiceClient;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,20 +19,14 @@ import org.springframework.web.client.RestClient;
 import java.util.List;
 @Slf4j
 @Service
+@RequiredArgsConstructor
 public class ServiceService {
-
+    private final ServiceClient client;
     //@Autowired
     //private HistoricoService historicoService;
     @Autowired
     private ServiceRepository serviceRepository;
 
-    public ServiceService(ServiceRepository serviceRepository
-    //                      ,ProjectRepository projectRepository
-    )
-    {
-        this.serviceRepository = serviceRepository;
-        //this.projectRepository = projectRepository;
-    }
 
     @Transactional
     public ResponseEntity<Servicee> save(ServiceRecordDto serviceDto){
@@ -40,7 +36,8 @@ public class ServiceService {
 
         service.setCost(serviceDto.cost());
         service.setDescription(serviceDto.description());
-
+            var project = client.getProjectById(serviceDto.projectId()).getBody();
+            /*
             RestClient restClient = RestClient.create();
             String serverUrl = String.format("http://localhost:8088/project/%d", serviceDto.projectId());
             Project project = restClient.get()
@@ -48,6 +45,8 @@ public class ServiceService {
                     .retrieve()
                     .toEntity(Project.class).getBody();
             //log.info(.getName());
+            */
+
         if (project.getId() == null) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null); // Return 400 Bad Request
         }else {
