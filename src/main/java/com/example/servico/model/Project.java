@@ -1,5 +1,6 @@
 package com.example.servico.model;
 
+import com.example.servico.model.enumm.Proceeding;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 
@@ -15,6 +16,8 @@ public class Project {
     private Long id;
     private String name;
     private BigDecimal budget;
+    @Enumerated(EnumType.STRING)
+    private Proceeding proceeding;
     private String category;
     private String description;
 
@@ -56,6 +59,14 @@ public class Project {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Proceeding getProceeding() {
+        return proceeding;
+    }
+
+    public void setProceeding(Proceeding proceeding) {
+        this.proceeding = proceeding;
     }
 }
 

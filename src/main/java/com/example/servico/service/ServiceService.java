@@ -3,8 +3,10 @@ package com.example.servico.service;
 import com.example.servico.dtos.ServiceRecordDto;
 import com.example.servico.model.Project;
 import com.example.servico.model.Servicee;
+import com.example.servico.rabbitmq.ServiceProducer;
 import com.example.servico.repository.ServiceRepository;
 import com.example.servico.service.feign.ServiceClient;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +29,12 @@ public class ServiceService {
     @Autowired
     private ServiceRepository serviceRepository;
 
+    private final ServiceProducer producer;
 
+    public void emitirServico(ServiceRecordDto service) throws JsonProcessingException {
+        System.out.println(service.name());
+        producer.send(service);
+    }
     @Transactional
     public ResponseEntity<Servicee> save(ServiceRecordDto serviceDto){
 
