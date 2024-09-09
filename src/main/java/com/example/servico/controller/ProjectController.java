@@ -16,7 +16,7 @@ import java.util.Map;
 
 @RestController
 @CrossOrigin(origins = "*")
-@RequestMapping("")
+@RequestMapping("/main")
 public class ProjectController {
     @Autowired
     private ProjectService projectService;
@@ -42,21 +42,21 @@ public class ProjectController {
         //return serviceService.save(serviceDto);
     }
     @PostMapping("/")
-    public ResponseEntity<Project> createProject(@RequestBody Project project) {
+    public ResponseEntity<?> createProject(@RequestBody Project project) throws JsonProcessingException {
 
         return projectService.createProject(project);
     }
-    @GetMapping("/")
+    /*@GetMapping("/")
     public ResponseEntity<List<Project>> getProjects() {
         return projectService.getProjects();
 
-    }
-    @DeleteMapping("{id}")
+    }*/
+    @DeleteMapping("/{id}")
     public ResponseEntity<Project> excluirProject (@PathVariable Long id){
 
         return projectService.excluirProject(id);
     }
-    @PutMapping("{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<Project> updateProject(@PathVariable Long id, @RequestBody Project project) {
         return projectService.updateProject(id, project);
     }
