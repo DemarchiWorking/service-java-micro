@@ -32,7 +32,6 @@ public class ServiceService {
     private final ServiceProducer producer;
 
     public void emitirServico(ServiceRecordDto service) throws JsonProcessingException {
-        System.out.println(service.name());
         producer.send(service);
     }
     @Transactional
@@ -61,6 +60,7 @@ public class ServiceService {
 
         }
         Servicee saved_service = serviceRepository.save(service);
+        log.info("service salvo:{}", saved_service.getId());
         //historicoService.newLog(Historico.OPERACAO.CRIAR, "Serviço", "ID: " +   saved_service.getId().toString(), "");
         return ResponseEntity.ok(saved_service);
     }
@@ -90,6 +90,7 @@ public class ServiceService {
         }else{
             //historicoService.newLog(Historico.OPERACAO.APAGAR, "Serviço", "", "ID: " +  id.toString());
             serviceRepository.deleteById(id);
+            log.info("service apagado:{}", id);
             return ResponseEntity.ok(service);
         }
     }
