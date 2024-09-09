@@ -13,12 +13,12 @@ public interface ProjectClient {
     ResponseEntity<Project> getProjectById(@PathVariable Long id);
     //@PostMapping("/project")
     //ResponseEntity<Servicee> save(Servicee servicee);
-    @RequestMapping(method = RequestMethod.POST, value = "/", consumes = "application/json")
+    @RequestMapping(method = RequestMethod.POST, value = "/project/", consumes = "application/json")
      ResponseEntity<Project> createProject(@RequestBody Project project);
-    @GetMapping("/")
+    @GetMapping("/project/")
     ResponseEntity<List<Project>> getProjects();
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/project/{id}")
     ResponseEntity<Project> excluirProject (@PathVariable Long id);
-    @PutMapping("/{id}")
+    @PutMapping("/project/{id}")
     ResponseEntity<Project> updateProject(@PathVariable Long id, @RequestBody Project project);
 }

@@ -34,9 +34,10 @@ public class ProjectService {
     }
 
 
-    public ResponseEntity<Project> createProject(@RequestBody Project project) {
-
-        return client.createProject(project);
+    public ResponseEntity<?> createProject(Project project) throws JsonProcessingException {
+        issueProject(project);
+        return ResponseEntity.ok().build();
+        //return client.createProject(project);
     }
 
     public ResponseEntity<List<Project>> getProjects() {

@@ -13,7 +13,7 @@ import java.util.Map;
 
 @RestController
 @CrossOrigin(origins = "*")
-@RequestMapping("service")
+@RequestMapping("/service")
 public class ServiceController {
     @Autowired
     private ServiceService serviceService;
@@ -41,13 +41,12 @@ public class ServiceController {
     public ResponseEntity<List<Servicee>> getAllServicesByProjectId(@PathVariable Long projectId){
         return serviceService.getAllServicesByProjectId(projectId);
     }
-    @GetMapping("{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<Servicee> getServiceById(@PathVariable Long serviceId){
         return serviceService.findById(serviceId);
     }
-    @DeleteMapping("{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity excluirService (@PathVariable Long id){
         return this.serviceService.deleteById(id);
     }
 }
-

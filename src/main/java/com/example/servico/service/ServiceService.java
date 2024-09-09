@@ -68,12 +68,12 @@ public class ServiceService {
         return ResponseEntity.ok(serviceRepository.findAll());
     }
 
-    public ResponseEntity<List<Servicee>> getAllServicesByProjectId(@PathVariable Long projectId) {
+    public ResponseEntity<List<Servicee>> getAllServicesByProjectId(Long projectId) {
         return ResponseEntity.ok(serviceRepository.findAllByProjectId(projectId));
     }
 
 
-    public ResponseEntity<Servicee> findById(@PathVariable Long id) {
+    public ResponseEntity<Servicee> findById(Long id) {
         Servicee service = serviceRepository.findById(id).orElse(null);
 
         if (service == null) {
@@ -82,7 +82,7 @@ public class ServiceService {
             return ResponseEntity.ok(service);
         }
     }
-    public ResponseEntity deleteById(@PathVariable Long id) {
+    public ResponseEntity<Servicee> deleteById(Long id) {
         Servicee service = serviceRepository.findById(id).orElse(null);
 
         if (service == null) {

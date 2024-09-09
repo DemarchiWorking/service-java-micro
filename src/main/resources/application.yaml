@@ -1,5 +1,5 @@
 app:
-  myport: 8086
+  myport: ${PORT:0}
 server:
   port: ${app.myport}
 spring:

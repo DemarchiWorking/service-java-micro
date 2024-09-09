@@ -13,11 +13,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 @FeignClient("PROJETO-SERVICE")
 public interface ServiceClient {
 
-    @GetMapping("{id}")
+    @GetMapping("/project/{id}")
     ResponseEntity<Project> getProjectById(@PathVariable Long id);
     //@PostMapping("/project")
     //ResponseEntity<Servicee> save(Servicee servicee);
-    @PostMapping("/")
+    @PostMapping("/project/")
     ResponseEntity<Project> createProject(@RequestBody Project project);
 
 }
