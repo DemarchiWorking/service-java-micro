@@ -27,6 +27,12 @@ eureka:
     service-url:
       defaultZone: http://localhost:8761/eureka/
 
+springdoc:
+  api-docs:
+    path: /service/v3/api-docs
+  swagger-ui:
+    path: /service/swagger-ui.html
+
 #spring.application.name=servico
 #server.port=8089
 #spring.datasource.url= jdbc:h2:mem:testdb
